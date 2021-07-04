@@ -1,24 +1,49 @@
-# README
+# Course Enrollement
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Running the app locally
+#### Dependencies
+* Ruby 2.3.0
 
-Things you may want to cover:
+Use bundler to install the project gems:
 
-* Ruby version
+```
+bundle install
+```
 
-* System dependencies
+Create and setup local database:
 
-* Configuration
+```bash
+bundle exec rake db:create
+bundle exec rake db:migrate
 
-* Database creation
+To run the application server:
 
-* Database initialization
+```bash
+bundle exec rails s
+```
 
-* How to run the test suite
+To run the rspecs:
 
-* Services (job queues, cache servers, search engines, etc.)
+```bash
+bundle exec rspec spec/controllers/
+```
 
-* Deployment instructions
 
-* ...
+## Development workflow
+Given 2 models - Course & Tutor
+-A course can have many tutors.
+-Tutor can teach one course only.
+
+- API'S details:
+
+1. POST   /courses
+
+```payload:
+{ "course":
+  {"name": "physics", "tutors_attributes":
+    [{"name": "johsnon"}, {"name": "thomas"}]
+  }
+}
+```
+
+2. GET /courses
