@@ -24,7 +24,8 @@ class CoursesController < ApplicationController
     courses = Course.includes(:tutors)
     course_list = []
     courses.each do |course|
-      course_list.push({ course_id: course.id, course_name: course.name, tutors: course.tutors })
+      course_list.push({ course: course, tutors: course.tutors })
     end
+    course_list
   end
 end
